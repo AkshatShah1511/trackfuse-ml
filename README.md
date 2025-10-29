@@ -1,73 +1,91 @@
-# RailTrack Insight
+TrackFuse ML
 
-A mobile-first React Native application that generates scannable QR codes for train tickets and information. The QR code can be scanned by any mobile device and opens a PDF with ticket/railway details.
+A web-based dashboard that uses a machine learning (TensorFlow/Keras) model to detect defects in uploaded images.
 
-[![Deploy to GitHub Pages](https://github.com/Amishmathur1/Rail_Dash0.1/actions/workflows/deploy.yml/badge.svg)](https://github.com/Amishmathur1/Rail_Dash0.1/actions/workflows/deploy.yml)
+Features
 
----
+🖼️ Image Upload – Select or drag-and-drop images for analysis.
 
-## Features
+🧠 AI-Powered Analysis – Uses an InceptionV3 model to classify images as "Defective" or "Non Defective".
 
-* 📱 **QR Code Generator** – Create QR codes for train tickets.
-* 📄 **PDF Access** – Scanned QR codes open a downloadable/printable PDF.
-* ⚡ **React Native Frontend** – Smooth and responsive UI.
-* 🔑 **Easy Sharing** – QR codes can be shared or printed.
-* 🚀 **Cross-platform** – Works on both Android and iOS.
+📊 Confidence Score – Displays the model's confidence in its prediction.
 
----
+🚀 Vite + React Frontend – A modern, fast, and responsive user interface.
 
-## Tech Stack
+🐍 Python + Flask Backend – A lightweight Python server to run the TensorFlow model.
 
-* **React Native** (frontend)
-* **Expo** (development/build)
-* **QRCode Generator** library
-* **PDF rendering** for tickets
+Tech Stack
 
----
+Frontend: React, Vite, TypeScript, Tailwind CSS
 
-## Installation
+Backend: Python, Flask, TensorFlow/Keras
 
-Clone the repository:
+How to Run This Project
 
-git clone https://github.com/Amishmathur1/railtrack-insight.git
-cd railtrack-insight
+This project has two parts: the Python backend and the React frontend. You must run both at the same time in two separate terminals.
 
-Install dependencies:
+1. Clone the Repository
 
+git clone [https://github.com/AkshatShah1511/trackfuse-ml.git](https://github.com/AkshatShah1511/trackfuse-ml.git)
+cd trackfuse-ml
+
+
+2. Run the Backend (Terminal 1)
+
+This terminal will run your Python/Flask server.
+
+# 1. Create and activate a Python virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# 2. Install Python dependencies
+pip install -r requirements.txt
+
+# 3. Make sure your model file is present in the root
+# (You should have model_inception_v3.h5 in this folder)
+
+# 4. Start the Flask server
+python3 app.py
+
+# ➡️ Your backend is now running at http://localhost:5001
+
+
+3. Run the Frontend (Terminal 2)
+
+Open a new terminal window in the same trackfuse-ml folder.
+
+# 1. Install Node.js dependencies
+# (Use npm, yarn, or bun)
 npm install
 
-Start the development server:
+# 2. Start the Vite development server
+npm run dev
 
-npm start
+# ➡️ Your frontend is now running at http://localhost:8080
 
-Run on Android/iOS:
 
-npm run android
-npm run ios
-
-Usage
-
-    Open the app on your mobile.
-
-    Enter ticket/railway information.
-
-    Generate a QR code.
-
-    Scan the QR code using any mobile device.
-
-    The scanned code opens the PDF with ticket details.
+Now you can open http://localhost:8080 in your browser to use the application. The frontend will automatically talk to the backend thanks to the proxy in vite.config.ts.
 
 Project Structure
 
-railtrack-insight/
-│── src/
-│   ├── components/   # Reusable UI components
-│   ├── screens/      # App screens
-│   ├── utils/        # QR/PDF utilities
-│── assets/           # Images, icons, etc.
-│── App.js            # Main entry point
-│── package.json
-│── README.md
+trackfuse-ml/
+│
+├── src/                # React/Vite frontend source
+│   ├── components/
+│   │   └── ui/         # Shadcn UI components
+│   └── DetectionTab.tsx  # Main React component
+│
+├── venv/               # Python virtual environment (ignored)
+│
+├── app.py              # Flask backend server
+├── model_inception_v3.h5 # AI Model (ignored)
+├── requirements.txt    # Python dependencies
+│
+├── vite.config.ts      # Vite config (with proxy for /predict)
+├── package.json        # Node.js dependencies
+├── .gitignore          # Files ignored by Git
+└── README.md
+
 
 Future Improvements
 
@@ -86,8 +104,3 @@ Fork the repo and create a pull request with improvements.
 License
 
 This project is licensed under the MIT License.
-
-
-Want me to also make you a **short GitHub repo description + tags** (the one that shows under your repo name on GitHub)?
-# Rail_Dash0.1
-# Track_Fusion
